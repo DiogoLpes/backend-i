@@ -1,0 +1,126 @@
+INFO:__main__:starts here 0.521323499
+
+pedrin
+pedrin
+pedrin
+pedrin
+pedrinINFO:__main__:ends here 0.521810929
+INFO:__main__:starts here 0.50701718
+
+pedrin
+pedrin
+pedrin
+pedrin
+pedrinINFO:__main__:ends here 0.50748227
+INFO:__main__:starts here 0.487434084
+
+pedrin
+pedrin
+pedrin
+pedrin
+pedrinINFO:__main__:ends here 0.487990921
+INFO:__main__:starts here 0.481590103
+
+pedrin
+pedrin
+pedrin
+pedrin
+pedrinINFO:__main__:ends here 0.482115651
+INFO:__main__:starts here 0.4831643
+
+pedrin
+pedrin
+pedrin
+pedrin
+pedrin
+1
+1
+1
+1
+1INFO:__main__:ends here 0.483490343
+INFO:__main__:starts here 0.488590646
+
+pedrin
+pedrin
+pedrin
+pedrin
+pedrin
+1
+1
+1
+1
+1INFO:__main__:ends here 0.489063283
+INFO:__main__:starts here 0.481581226
+
+pedrin
+pedrin
+pedrin
+pedrin
+pedrin
+1
+1
+1
+1
+1INFO:__main__:ends here 0.481886578
+INFO:__main__:starts here 0.493813628
+
+pedrin
+pedrin
+pedrin
+pedrin
+pedrin
+1
+1
+1
+1
+1INFO:__main__:ends here 0.494184136
+INFO:__main__:starts here 0.494678646
+INFO:__main__:ends here 0.495839914
+INFO:__main__:starts here 0.486677781
+
+pedrin
+pedrin
+pedrin
+pedrin
+pedrin
+1
+1
+1
+1
+1INFO:__main__:ends here 0.487227083
+INFO:__main__:starts here 0.48779111
+INFO:__main__:ends here 0.48873099
+INFO:__main__:starts here 0.52194806
+INFO:__main__:ends here 0.522426836
+INFO:__main__:starts here 0.499943876
+INFO:__main__:ends here 0.500567833
+INFO:__main__:starts here 0.467136443
+
+1
+1
+1
+1
+1INFO:__main__:ends here 0.467659465
+INFO:__main__:starts here 0.521027255
+
+1
+1
+1
+1
+1INFO:__main__:ends here 0.521467719
+INFO:__main__:starts here 0.49557378
+
+1
+1
+1
+1
+1INFO:__main__:ends here 0.496083554
+INFO:__main__:starts here 0.476273545
+
+1
+1
+1
+1
+1INFO:__main__:ends here 0.47657151
+INFO:__main__:starts here 0.479362654
+
