@@ -1,6 +1,4 @@
-from typing import Annotated
-from fastapi.responses import JSONResponse
-from src.session_12.models import Task
+from src.session_13.models import Task
 from fastapi import FastAPI
 
 
@@ -9,10 +7,9 @@ api = FastAPI(
 )
 
 
-
 @api.post("/task")
-def create_task(data: Annotated{Task.Form()}):
-    return JSONResponse({"status": "created"}, status_code=status.HTTP_201_CREATED)
+def create_task():
+    pass
 
 @api.get("/task", response_model=Task)
 def list_task():

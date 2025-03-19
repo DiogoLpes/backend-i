@@ -23,7 +23,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
             print(request_data)
 
             # Parse the request to get the path
-            request_lines = request_data.splitl©ines()
+            request_lines = request_data.splitlines()
             if len(request_lines) > 0:
                 request_line = request_lines[0]
                 # Split the request line into method, path, and protocol

@@ -9,3 +9,7 @@ logs:
 
 api-logs:
 	docker compose logs -f api
+
+tests:
+	docker compose run  --rm --entrypoint="" api poetry run pytest -vvv
+	

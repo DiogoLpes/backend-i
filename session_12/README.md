@@ -7,5 +7,6 @@
 -uvicorn
 -sqlmodel
 -pyetest (Dev dependecy)
+-httpx (Dev dependecy)
 
  poetry add psycopg2-binary
