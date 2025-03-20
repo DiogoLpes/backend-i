@@ -2,11 +2,12 @@
 
 - Python 3.12 +
 
-##DEPENDENCIES
--fastapi
--uvicorn
--sqlmodel
--pyetest (Dev dependecy)
--httpx (Dev dependecy)
 
- poetry add psycopg2-binary
+##Dependencies
+- fastapi
+- uvicorn
+- sqlmodel
+- psycopg2-binary (Postgres for db connection)
+- pytest (Dev dependencies)
+- httpx (Dev dependencies)
+
