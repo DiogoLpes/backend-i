@@ -1,8 +1,11 @@
 {% block content %}
     <h2>Tasks</h2>
-    <ul>
-        {% for Task in object_list %}
-            <li>[COMPLETED: {{ Task.is_done }}] | {{ Task.title }} - [{{ Task.due_date }}] : {{ Task.description }}</li>
+    <form action="{% url 'task_list ' %}" method="post"></form>
+        {% csrf_token %}
+        {{form}}
+        <ul>
+            {% for Task in object_list %}
+            <li> {{ Task.title }} </li>
             {% endfor %}
-    </ul>
-    {% endblock %}
+        </ul>
+{% endblock %}

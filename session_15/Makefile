@@ -14,3 +14,8 @@ createsuperuser:
 newapp:
 	poetry run python manage.py startapp $(app)
 	@# to execute run `make newapp app=cenas`
+
+
+
+tests:
+	poetry run pytest -vvv
