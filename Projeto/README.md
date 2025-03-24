@@ -23,3 +23,12 @@ Banco de Dados: PostgreSQL.
 Extras:
 Autenticação de usuários.
 Integração com Docker e Docker Compose.
+
+
+##Flowchard
+
+
+
+Dependecies
+
+pip install fastapi sqlalchemy pydantic uvicorn
