@@ -1,3 +1,4 @@
+
 start:
 	poetry run python manage.py runserver
 
@@ -10,10 +11,6 @@ migration:
 createsuperuser:
 	poetry run python manage.py createsuperuser
 
-newapp:
-	poetry run python manage.py startapp $(app)
-	@# to execute run `make newapp app=cenas`
+compose.start:
+	docker compose up --build --force-recreate
 
-
-tests:
-	poetry run pytest -vvv

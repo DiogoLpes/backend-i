@@ -14,4 +14,4 @@ EXPOSE 8000
 
 ENTRYPOINT [ "poetry", "run"]
 
-CMD [ "uvicorn", "djproject.asgi:application", "--host", "0.0.0.0", "--port", "8000" ]
+CMD [ "uvicorn", "reservas.asgi:application", "--host", "0.0.0.0", "--port", "8000" ]
