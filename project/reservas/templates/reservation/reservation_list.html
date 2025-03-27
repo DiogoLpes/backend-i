@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Your Reservations</h2>
+
+<!-- Create Form -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Make Reservation</button>
+</form>
+
+<!-- List of Reservations -->
+<ul>
+    {% for reservation in object_list %}
+    <li>
+        {{ reservation.date }} at {{ reservation.time }} - 
+        Table {{ reservation.table.number }}
+        <a href="{% url 'edit-reservation' reservation.id %}">Edit</a>
+        <form method="post" action="{% url 'delete-reservation' reservation.id %}">
+            {% csrf_token %}
+            <button type="submit">Cancel</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

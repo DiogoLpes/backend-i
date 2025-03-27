@@ -14,3 +14,5 @@ createsuperuser:
 compose.start:
 	docker compose up --build --force-recreate
 
+compose.migrate:
+	docker compose run --rm web poetry run python manage.py migrate

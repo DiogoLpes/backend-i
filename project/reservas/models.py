@@ -1,38 +1,31 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Mesa(models.Model):
-    numero = models.IntegerField(unique=True)
-    capacidade = models.IntegerField()
-    local = models.CharField(max_length=20, choices=[
-        ('dentro', 'Dentro'),
-        ('fora', 'Fora')
+class Table(models.Model):
+    number = models.IntegerField(unique=True)
+    capacity = models.IntegerField()
+    location = models.CharField(max_length=20, choices=[
+        ('inside', 'Inside'),
+        ('outside', 'Outside')
     ])
     
     def __str__(self):
-        return f"Mesa {self.numero} ({self.local})"
+        return f"Table {self.number} ({self.location})"
 
-class Reserva(models.Model):
-    cliente = models.ForeignKey(User, on_delete=models.CASCADE)
-    nome = models.CharField(max_length=100)
-    telefone = models.CharField(max_length=15)
-    
-    mesa = models.ForeignKey(Mesa, on_delete=models.CASCADE)
-    data = models.DateField()
-    hora = models.TimeField()
-    
-    pessoas = models.IntegerField()
-    criancas = models.IntegerField(default=0)
-    local_preferido = models.CharField(max_length=10, choices=[
-        ('dentro', 'Dentro'),
-        ('fora', 'Fora')
+class Reservation(models.Model):
+    customer = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=80)
+    phone = models.CharField(max_length=15)
+    table = models.ForeignKey(Table, on_delete=models.CASCADE)
+    date = models.DateField()
+    time = models.TimeField()
+    guests = models.IntegerField()
+    children = models.IntegerField(default=0)
+    preferred_location = models.CharField(max_length=10, choices=[
+        ('inside', 'Inside'),
+        ('outside', 'Outside')
     ])
-    
-    criada_em = models.DateTimeField(auto_now_add=True)
-    atualizada_em = models.DateTimeField(auto_now=True)
-    
-    class Meta:
-        unique_together = ('mesa', 'data', 'hora')
+       
     
     def __str__(self):
-        return f"Reserva de {self.nome} para {self.data} às {self.hora}"
+        return f"Reservation by {self.name} for {self.date} at {self.time}"

@@ -12,6 +12,8 @@ RUN poetry install -n
 
 EXPOSE 8000
 
+RUN poetry run python manage.py collectstatic --noinput
+
 ENTRYPOINT [ "poetry", "run"]
 
 CMD [ "uvicorn", "diogo_tapas.asgi:application", "--host", "0.0.0.0", "--port", "8000" ]
