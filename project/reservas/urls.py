@@ -1,12 +1,12 @@
-from django.urls import path
-from django.urls import path
-from .views import ReservationListView, IndexView, SignUpView, logout_view
-from django.contrib.auth.views import LoginView
+from django.contrib import admin
+from django.urls import path, include
+from django.contrib.auth import views as auth_views
+from reservas import views
 
 urlpatterns = [
-    path("", IndexView.as_view(), name="index"),
-    path("reservations/", ReservationListView.as_view(), name="reservation_list"),
-    path("signup/", SignUpView.as_view(), name="signup"),
-    path("signin/", LoginView.as_view(template_name="reservations/signin.html"), name="signin"),
-    path("logout/", logout_view, name="logout"),
+    
+    path('signup/', views.SignUpView.as_view(), name='signup'),
+    path('signin/', auth_views.LoginView.as_view(template_name='reservas/signin.html'), name='signin'),
+    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('', views.IndexView.as_view(), name='index'),
 ]

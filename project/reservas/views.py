@@ -7,28 +7,14 @@ from django.urls import reverse_lazy
 from .forms import ReservationForm
 from .models import Reservation
 
-class ReservationListView(LoginRequiredMixin, CreateView):
-    login_url = "/signin"
-    success_url = reverse_lazy("reservation_list")
-    form_class = ReservationForm
-    template_name = "reservations/list.html"
-
-    def get_context_data(self, **kwargs):
-        kwargs['reservations'] = Reservation.objects.filter(user=self.request.user).all()
-        return super().get_context_data(**kwargs)
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
 
 class IndexView(TemplateView):
-    http_method_names = ['get']
-    template_name = "reservations/index.html"
+    template_name = "reservas/index.html"
 
-class SignUpView(FormView):
-    template_name = "reservations/signup.html"
-    success_url = reverse_lazy("reservation_list")
+class SignUpView(CreateView):
     form_class = UserCreationForm
+    success_url = reverse_lazy('signin')
+    template_name = 'registration/signup.html'
 
     def form_valid(self, form):
         form.save()
