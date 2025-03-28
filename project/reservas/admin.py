@@ -1,12 +1,8 @@
 from django.contrib import admin
-from .models import Table, Reservation
+from .models import Reservation
 
-@admin.register(Table)
-class TableAdmin(admin.ModelAdmin):
-    list_display = ('number', 'capacity', 'location')
 
 @admin.register(Reservation)
 class ReservationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'date', 'time', 'table', 'customer')
-    list_filter = ('date', 'preferred_location')
-    search_fields = ('name', 'phone')
+    list_display = ('name', 'date', 'time', 'num_people')
+    search_fields = ('name',)

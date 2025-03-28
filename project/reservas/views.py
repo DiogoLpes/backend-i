@@ -1,32 +1,33 @@
 from django.shortcuts import redirect
-from django.views.generic import TemplateView, FormView, CreateView, ListView
+from django.views.generic import TemplateView, FormView, CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout
+from django.urls import reverse_lazy
 from .forms import ReservationForm
-from .models import Reservation, Table
+from .models import Reservation
 
 class ReservationListView(LoginRequiredMixin, CreateView):
-    login_url = "/login"
-    success_url = "/reservations"
+    login_url = "/signin"
+    success_url = reverse_lazy("reservation_list")
     form_class = ReservationForm
-    template_name = "reservations/base.html"
+    template_name = "reservations/list.html"
 
     def get_context_data(self, **kwargs):
-        kwargs['object_list'] = Reservation.objects.filter(customer=self.request.user).all()
+        kwargs['reservations'] = Reservation.objects.filter(user=self.request.user).all()
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
-        form.instance.customer = self.request.user
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
-class HomeView(TemplateView):
+class IndexView(TemplateView):
     http_method_names = ['get']
-    template_name = "reservations/reservation_list.html"
+    template_name = "reservations/index.html"
 
 class SignUpView(FormView):
-    template_name = "registration/signup.html"
-    success_url = "/reservations"
+    template_name = "reservations/signup.html"
+    success_url = reverse_lazy("reservation_list")
     form_class = UserCreationForm
 
     def form_valid(self, form):

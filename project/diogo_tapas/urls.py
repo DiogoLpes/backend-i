@@ -19,34 +19,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
-from reservas.views import HomeView, CreateReservationView, UpdateReservationView, CancelReservationView
 from django.urls import path, include
-from django.views import ReservationListView, HomeView, SignUpView, logout_view
+
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('reservations/', include('reservations.urls')),
 ] 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-
-urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
-    path('reservations/', ReservationListView.as_view(), name='reservation-list'),
-    path('signup/', SignUpView.as_view(), name='signup'),
-    path('logout/', logout_view, name='logout'),
-]
-
-urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
-    path('reservation/', CreateReservationView.as_view(), name='book'),
-    path('edit/<int:pk>/', UpdateReservationView.as_view(), name='edit'),
-    path('cancel/<int:pk>/', CancelReservationView.as_view(), name='cancel'),
-]
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('', include('reservas.urls')),
-]
