@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Minhas Reservas</h2>
+{% if bookings %}
+<ul>
+    {% for booking in bookings %}
+    <li>
+        {{ booking.date }} às {{ booking.time|time:"H:i" }} - 
+        {{ booking.guests }} pessoa{{ booking.guests|pluralize }}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Nenhuma reserva futura encontrada.</p>
+{% endif %}
+<a href="{% url 'book_table' %}" class="btn btn-primary">Nova Reserva</a>
+{% endblock %}

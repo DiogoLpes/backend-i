@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Make a Reservation</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Book Now</button>
+</form>
+
+{% if user.is_authenticated %}
+<p><a href="{% url 'booking_list' %}">Ver minhas reservas</a></p>
+{% endif %}
+
+{% if messages %}
+    {% for message in messages %}
+        <p style="color: green;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+{% endblock %}

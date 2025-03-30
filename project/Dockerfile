@@ -1,8 +1,8 @@
 FROM python:3.12-slim
 
-RUN pip install poetry 
-
 WORKDIR /app
+
+RUN pip install poetry 
 
 COPY pyproject.toml poetry.lock /app/
 
@@ -14,4 +14,4 @@ EXPOSE 8000
 
 RUN poetry run python manage.py collectstatic --noinput
 
-CMD [  "poetry", "run", "uvicorn", "diogo_tapas.asgi:application", "--host", "0.0.0.0", "--port", "8000" ]
+CMD [ "poetry", "run", "uvicorn", "diogo_tapas.asgi:application", "--host", "0.0.0.0", "--port", "8000" ]
