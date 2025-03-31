@@ -5,23 +5,36 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
-from book.models import Booking
+from reservas.models import Booking
 from .forms import BookingForm
 from django.contrib import messages
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView as AuthLoginView
 
 class IndexView(TemplateView):
-    template_name = "reservas/index.html"
+    template_name = "book/index.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = BookingForm()  # Add the form to the context
+        return context
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
-    success_url = reverse_lazy('signin')
     template_name = 'registration/signup.html'
+    success_url = reverse_lazy('login')
 
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+    
+class LoginView(AuthLoginView):
+    template_name = 'registration/login.html'
+
+    def get_success_url(self):
+        return redirect('book/index')
+
 
 def logout_view(request):
     if request.method == "POST":
@@ -35,15 +48,16 @@ def book_table(request):
             booking = form.save(commit=False)
             if request.user.is_authenticated:
                 booking.email = request.user.email
+                booking.save()
                 messages.success(request, 'Reserva efetuada com sucesso!')
+                return redirect('booking_list') 
             else:
-                messages.success(request, 'Reserva efetuada como convidado! Crie uma conta para gerir suas reservas.')
-            booking.save()
-            return redirect('index')
+                booking.save()
+                return redirect('index')
     else:
         form = BookingForm()
     
-    return render(request, 'reservas/index.html', {'form': form})
+    return render(request, 'book/index.html', {'form': form})
 
 
 
@@ -53,7 +67,4 @@ class BookingListView(LoginRequiredMixin, ListView):
     context_object_name = 'bookings'
     
     def get_queryset(self):
-        return Booking.objects.filter(
-            email=self.request.user.email,
-            date__gte=timezone.now().date()
-        ).order_by('date', 'time')
+        return Booking.objects.all()

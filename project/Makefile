@@ -8,7 +8,7 @@ migration:
 	docker compose run --rm web poetry run python manage.py makemigrations 
 
 createsuperuser:
-	docker compose exec web poetry run python manage.py createsuperuser
+	docker compose run web poetry run python manage.py createsuperuser
 
 compose.start:
 	docker compose up --build --force-recreate
