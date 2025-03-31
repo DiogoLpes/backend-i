@@ -2,7 +2,7 @@ start:
 	poetry run python manage.py runserver
 
 migrate:
-	docker compose run --rm web poetry run python manage.py migrate
+	docker compose exec web poetry run python manage.py migrate
 
 migration:
 	docker compose run --rm web poetry run python manage.py makemigrations 

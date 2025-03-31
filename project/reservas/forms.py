@@ -11,7 +11,6 @@ class BookingForm(forms.ModelForm):
             'time': forms.TimeInput(attrs={'type': 'time'}),
         }
 
-    # Adicione esta função DENTRO da classe BookingForm, mas FORA da classe Meta
     def clean_date(self):
         date = self.cleaned_data['date']
         if date < date.today():

@@ -39,7 +39,7 @@ class LoginView(AuthLoginView):
 def logout_view(request):
     if request.method == "POST":
         logout(request)
-        return redirect("/")
+        return redirect("/signup")
     
 def book_table(request):
     if request.method == 'POST':
@@ -68,3 +68,5 @@ class BookingListView(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         return Booking.objects.all()
+    
+    

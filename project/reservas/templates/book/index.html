@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+<p>Hello {{ user.username }}!</p>
+{% if user.is_authenticated %}
+<form action="{% url 'logout' %}" method="post">
+{% csrf_token %}
+<button type="submit">logout</button>
+</form>
 
+{% endif %}
 <h1>Make a Reservation</h1>
 <form method="post" action="{% url 'book_table' %}">
     {% csrf_token %}
