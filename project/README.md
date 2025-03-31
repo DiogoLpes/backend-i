@@ -67,4 +67,10 @@ The project uses the following dependencies:
    git clone <https://github.com/DiogoLpes/backend-i.git>
    cd <project>
 
+## .env
 
+POSTGRES_DB="db"      
+POSTGRES_USER="postgres"  
+POSTGRES_PASSWORD="qwerty"
+POSTGRES_HOST="database"                 
+POSTGRES_PORT="5432"

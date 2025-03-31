@@ -11,6 +11,11 @@ from django.contrib import messages
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView as AuthLoginView
+import logging
+
+
+logger = logging.getLogger('reservas')
+
 
 class IndexView(TemplateView):
     template_name = "book/index.html"
@@ -26,7 +31,8 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        form.save()
+        user = form.save()
+        logger.info(f"New user signed up: {user.username}")
         return super().form_valid(form)
     
 class LoginView(AuthLoginView):
@@ -49,14 +55,19 @@ def book_table(request):
             if request.user.is_authenticated:
                 booking.email = request.user.email
                 booking.save()
-                messages.success(request, 'Reserva efetuada com sucesso!')
-                return redirect('booking_list') 
+                logger.info(f"Reservation created for user {request.user.email} on {booking.date} at {booking.time}")
+                messages.success(request, 'Reservation successfully made!')
+                return redirect('booking_list')
             else:
                 booking.save()
+                logger.info(f"Reservation created for anonymous user on {booking.date} at {booking.time}")
                 return redirect('index')
+        else:
+            logger.warning("Invalid form submission for booking")
     else:
         form = BookingForm()
-    
+        logger.debug("Rendering booking form")
+
     return render(request, 'book/index.html', {'form': form})
 
 
